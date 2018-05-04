@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smkdp.modules.sys.dao.SysMenuDao">
+    <resultMap id="BaseResultMap" type="com.smkdp.modules.sys.entity.SysMenu">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="parent_id" property="parentId" jdbcType="VARCHAR"/>
+        <result column="has_children" property="hasChildren" jdbcType="CHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="sort" property="sort" jdbcType="DECIMAL"/>
+        <result column="href" property="href" jdbcType="VARCHAR"/>
+        <result column="target" property="target" jdbcType="VARCHAR"/>
+        <result column="icon" property="icon" jdbcType="VARCHAR"/>
+        <result column="is_show" property="isShow" jdbcType="CHAR"/>
+        <result column="permission" property="permission" jdbcType="VARCHAR"/>
+        <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+        <result column="remarks" property="remarks" jdbcType="VARCHAR"/>
+        <result column="del_flag" property="delFlag" jdbcType="CHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    t1.id, t1.parent_id, t1.has_children, t1.name, t1.sort, t1.href, t1.target, t1.icon, t1.is_show, permission,
+    t1.create_by, t1.create_date, t1.update_by, t1.update_date, t1.remarks, t1.del_flag
+  </sql>
+    <select id="get" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_menu t1
+        where t1.id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="delete" parameterType="java.lang.String">
+    delete from sys_menu t1.
+    where t1.id = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="sysMenu">
+    insert into sys_menu (id, parent_id, has_children,
+      name, sort, href, target, 
+      icon, is_show, permission, 
+      create_by, create_date, update_by, 
+      update_date, remarks, del_flag
+      )
+    values (#{id,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{hasChildren,jdbcType=CHAR},
+      #{name,jdbcType=VARCHAR}, #{sort,jdbcType=DECIMAL}, #{href,jdbcType=VARCHAR}, #{target,jdbcType=VARCHAR}, 
+      #{icon,jdbcType=VARCHAR}, #{isShow,jdbcType=CHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{remarks,jdbcType=VARCHAR}, #{delFlag,jdbcType=CHAR}
+      )
+  </insert>
+    <update id="update" parameterType="sysMenu">
+        update sys_menu
+        <set>
+            <if test="parentId != null">
+                parent_id = #{parentId,jdbcType=VARCHAR},
+            </if>
+            <if test="hasChildren != null">
+                has_children = #{hasChildren,jdbcType=CHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="sort != null">
+                sort = #{sort,jdbcType=DECIMAL},
+            </if>
+            <if test="href != null">
+                href = #{href,jdbcType=VARCHAR},
+            </if>
+            <if test="target != null">
+                target = #{target,jdbcType=VARCHAR},
+            </if>
+            <if test="icon != null">
+                icon = #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="isShow != null">
+                is_show = #{isShow,jdbcType=CHAR},
+            </if>
+            <if test="permission != null">
+                permission = #{permission,jdbcType=VARCHAR},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remarks != null">
+                remarks = #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag,jdbcType=CHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <select id="findList" resultType="sysMenu" parameterType="sysMenu">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_menu t1
+        where 1=1
+        <if test="parentId != null and parentId != ''">
+            and t1.parent_id = #{parentId}
+        </if>
+        <if test="name != null and name != ''">
+            and t1.name like CONCAT('%', #{name}, '%')
+        </if>
+        order by t1.sort asc
+    </select>
+</mapper>

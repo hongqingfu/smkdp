@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smkdp.modules.gen.dao.GenTableDao">
+    <resultMap id="BaseResultMap" type="com.smkdp.modules.gen.entity.GenTable">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="comments" property="comments" jdbcType="VARCHAR"/>
+        <result column="class_name" property="className" jdbcType="VARCHAR"/>
+        <result column="parent_table" property="parentTable" jdbcType="VARCHAR"/>
+        <result column="parent_table_fk" property="parentTableFk" jdbcType="VARCHAR"/>
+        <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+        <result column="remarks" property="remarks" jdbcType="VARCHAR"/>
+        <result column="del_flag" property="delFlag" jdbcType="CHAR"/>
+        <collection property="columns" column="table_id" ofType="com.smkdp.modules.gen.entity.GenTableColumn">
+            <id column="id" property="id" jdbcType="VARCHAR"/>
+            <result column="gen_table_id" property="genTableId" jdbcType="VARCHAR"/>
+            <result column="name" property="name" jdbcType="VARCHAR"/>
+            <result column="comments" property="comments" jdbcType="VARCHAR"/>
+            <result column="jdbc_type" property="jdbcType" jdbcType="VARCHAR"/>
+            <result column="java_type" property="javaType" jdbcType="VARCHAR"/>
+            <result column="java_field" property="javaField" jdbcType="VARCHAR"/>
+            <result column="is_pk" property="isPk" jdbcType="CHAR"/>
+            <result column="is_null" property="isNull" jdbcType="CHAR"/>
+            <result column="is_insert" property="isInsert" jdbcType="CHAR"/>
+            <result column="is_edit" property="isEdit" jdbcType="CHAR"/>
+            <result column="is_list" property="isList" jdbcType="CHAR"/>
+            <result column="is_query" property="isQuery" jdbcType="CHAR"/>
+            <result column="query_type" property="queryType" jdbcType="VARCHAR"/>
+            <result column="show_type" property="showType" jdbcType="VARCHAR"/>
+            <result column="dict_type" property="dictType" jdbcType="VARCHAR"/>
+            <result column="settings" property="settings" jdbcType="VARCHAR"/>
+            <result column="sort" property="sort" jdbcType="DECIMAL"/>
+            <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+            <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+            <result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+            <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+            <result column="remarks" property="remarks" jdbcType="VARCHAR"/>
+            <result column="del_flag" property="delFlag" jdbcType="CHAR"/>
+        </collection>
+    </resultMap>
+    <sql id="BaseColumnList">
+        t1.id, t1.name, t1.comments, t1.class_name, t1.parent_table, t1.parent_table_fk, t1.create_by, t1.create_date,
+        t1.update_by, t1.update_date, t1.remarks, t1.del_flag
+    </sql>
+    <sql id="CollectionColumnList">
+        t2.id, t2.gen_table_id, t2.name, t2.comments, t2.jdbc_type, t2.java_type, t2.java_field, t2.is_pk, t2.is_null,
+        t2.is_insert, t2.is_edit, t2.is_list, t2.is_query, t2.query_type, t2.show_type, t2.dict_type, t2.settings,
+        t2.sort, t2.create_by, t2.create_date, t2.update_by, t2.update_date, t2.remarks, t2.del_flag
+    </sql>
+    <select id="get" resultType="genTable">
+        select
+        <include refid="BaseColumnList"/>
+        from gen_table t1
+        where t1.id = #{id}
+    </select>
+    <select id="getTableAndColumns" parameterType="string" resultMap="BaseResultMap">
+        select
+        <include refid="BaseColumnList"/>,
+        <include refid="CollectionColumnList"/>
+        from gen_table t1
+        left join gen_table_column t2 on t1.id = t2.gen_table_id
+        where t1.id = #{id}
+    </select>
+    <select id="findList" parameterType="genTable" resultMap="BaseResultMap">
+        select
+        <include refid="BaseColumnList"/>
+        from gen_table t1
+        where 1=1
+    </select>
+</mapper>
