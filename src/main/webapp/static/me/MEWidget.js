@@ -44,7 +44,7 @@
                     refresh: true,
                     buttonCount: 5,
                     page: 1,
-                    pageSize: 1,
+                    pageSize: 10,
                     pageSizes: [10, 20, 30],
                     messages: {
                         display: "显示 {0}-{1} 共 {2} 项",

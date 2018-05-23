@@ -4,7 +4,7 @@
 <head>
     <title>数据库配置</title>
     <meta name="decorator" content="default"/>
-    <script type="text/javascript" src="${ctxStatic}/js/generator/dataSourceList.js"></script>
+    <script type="text/javascript" src="${ctxStatic}/js/gen/dataSourceList.js"></script>
 </head>
 <body>
 <div id="conditions" class="widget-box">

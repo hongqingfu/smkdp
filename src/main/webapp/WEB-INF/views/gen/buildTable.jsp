@@ -4,7 +4,7 @@
 <head>
     <title>表单配置</title>
     <meta name="decorator" content="blank"/>
-    <script type="text/javascript" src="${ctxStatic}/js/generator/buildTable.js"></script>
+    <script type="text/javascript" src="${ctxStatic}/js/gen/buildTable.js"></script>
 </head>
 <body>
 <div id="conditions" class="form-horizontal form-bordered">

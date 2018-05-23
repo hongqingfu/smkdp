@@ -14,7 +14,9 @@ $(document).ready(function () {
                     dataType: "json",
                     type: "post",
                     success: function (data) {
-                        alert(data.message)
+                        alertx(data.message, function () {
+                            window.parent.$("#detail_window").data("kendoMEWindow").close();
+                        })
                     }
                 })
             }

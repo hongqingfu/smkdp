@@ -6,6 +6,9 @@ import com.smkdp.modules.gen.entity.GenTable;
 
 public interface GenTableService extends BaseService<GenTable> {
 
-
     GenTable getTableAndColumns(String id);
+
+    int saveTableAndColumn(GenTable genTable);
+
+    int deleteTableAndColumn(String id);
 }

@@ -56,6 +56,61 @@
         from gen_table t1
         where t1.id = #{id}
     </select>
+    <delete id="delete" parameterType="java.lang.String">
+        delete from gen_table
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="genTable">
+        insert into gen_table (id, name, comments,
+        class_name, parent_table, parent_table_fk,
+        create_by, create_date, update_by,
+        update_date, remarks, del_flag
+        )
+        values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{comments,jdbcType=VARCHAR},
+        #{className,jdbcType=VARCHAR}, #{parentTable,jdbcType=VARCHAR}, #{parentTableFk,jdbcType=VARCHAR},
+        #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR},
+        #{updateDate,jdbcType=TIMESTAMP}, #{remarks,jdbcType=VARCHAR}, #{delFlag,jdbcType=CHAR}
+        )
+    </insert>
+    <update id="update" parameterType="genTable">
+        update gen_table
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="comments != null">
+                comments = #{comments,jdbcType=VARCHAR},
+            </if>
+            <if test="className != null">
+                class_name = #{className,jdbcType=VARCHAR},
+            </if>
+            <if test="parentTable != null">
+                parent_table = #{parentTable,jdbcType=VARCHAR},
+            </if>
+            <if test="parentTableFk != null">
+                parent_table_fk = #{parentTableFk,jdbcType=VARCHAR},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remarks != null">
+                remarks = #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag,jdbcType=CHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
     <select id="getTableAndColumns" parameterType="string" resultMap="BaseResultMap">
         select
         <include refid="BaseColumnList"/>,

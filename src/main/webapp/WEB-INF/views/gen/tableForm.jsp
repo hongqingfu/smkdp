@@ -4,7 +4,7 @@
 <head>
     <title>用户设置</title>
     <meta name="decorator" content="blank"/>
-    <script type="text/javascript" src="${ctxStatic}/js/generator/tableForm.js"></script>
+    <script type="text/javascript" src="${ctxStatic}/js/gen/tableForm.js"></script>
 </head>
 <body>
 <div id="conditions" class="form-horizontal">

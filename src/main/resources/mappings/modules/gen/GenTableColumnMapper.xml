@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smkdp.modules.gen.dao.GenTableColumnDao">
+    <resultMap id="BaseResultMap" type="com.smkdp.modules.gen.entity.GenTableColumn">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="gen_table_id" property="genTableId" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="comments" property="comments" jdbcType="VARCHAR"/>
+        <result column="jdbc_type" property="jdbcType" jdbcType="VARCHAR"/>
+        <result column="java_type" property="javaType" jdbcType="VARCHAR"/>
+        <result column="java_field" property="javaField" jdbcType="VARCHAR"/>
+        <result column="is_pk" property="isPk" jdbcType="CHAR"/>
+        <result column="is_null" property="isNull" jdbcType="CHAR"/>
+        <result column="is_insert" property="isInsert" jdbcType="CHAR"/>
+        <result column="is_edit" property="isEdit" jdbcType="CHAR"/>
+        <result column="is_list" property="isList" jdbcType="CHAR"/>
+        <result column="is_query" property="isQuery" jdbcType="CHAR"/>
+        <result column="query_type" property="queryType" jdbcType="VARCHAR"/>
+        <result column="show_type" property="showType" jdbcType="VARCHAR"/>
+        <result column="dict_type" property="dictType" jdbcType="VARCHAR"/>
+        <result column="settings" property="settings" jdbcType="VARCHAR"/>
+        <result column="sort" property="sort" jdbcType="DECIMAL"/>
+        <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+        <result column="remarks" property="remarks" jdbcType="VARCHAR"/>
+        <result column="del_flag" property="delFlag" jdbcType="CHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    t1.id, t1.gen_table_id, t1.name, t1.comments, t1.jdbc_type, t1.java_type, t1.java_field, t1.is_pk, t1.is_null,
+    t1.is_insert, t1.is_edit, t1.is_list, t1.is_query, t1.query_type, t1.show_type, t1.dict_type, t1.settings,
+    t1.sort, t1.create_by, t1.create_date, t1.update_by, t1.update_date, t1.remarks, t1.del_flag
+  </sql>
+    <select id="get" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from gen_table_column t1
+        where t1.id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="delete" parameterType="java.lang.String">
+    delete from gen_table_column t1
+    where t1.id = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="genTableColumn">
+    insert into gen_table_column (id, gen_table_id, name, 
+      comments, jdbc_type, java_type, 
+      java_field, is_pk, is_null, 
+      is_insert, is_edit, is_list, is_query, 
+      query_type, show_type, dict_type, 
+      settings, sort, create_by, 
+      create_date, update_by, update_date, 
+      remarks, del_flag)
+    values (#{id,jdbcType=VARCHAR}, #{genTableId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{comments,jdbcType=VARCHAR}, #{jdbcType,jdbcType=VARCHAR}, #{javaType,jdbcType=VARCHAR}, 
+      #{javaField,jdbcType=VARCHAR}, #{isPk,jdbcType=CHAR}, #{isNull,jdbcType=CHAR}, 
+      #{isInsert,jdbcType=CHAR}, #{isEdit,jdbcType=CHAR}, #{isList,jdbcType=CHAR}, #{isQuery,jdbcType=CHAR}, 
+      #{queryType,jdbcType=VARCHAR}, #{showType,jdbcType=VARCHAR}, #{dictType,jdbcType=VARCHAR}, 
+      #{settings,jdbcType=VARCHAR}, #{sort,jdbcType=DECIMAL}, #{createBy,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{remarks,jdbcType=VARCHAR}, #{delFlag,jdbcType=CHAR})
+  </insert>
+    <update id="update" parameterType="genTableColumn">
+        update gen_table_column
+        <set>
+            <if test="genTableId != null">
+                gen_table_id = #{genTableId,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="comments != null">
+                comments = #{comments,jdbcType=VARCHAR},
+            </if>
+            <if test="jdbcType != null">
+                jdbc_type = #{jdbcType,jdbcType=VARCHAR},
+            </if>
+            <if test="javaType != null">
+                java_type = #{javaType,jdbcType=VARCHAR},
+            </if>
+            <if test="javaField != null">
+                java_field = #{javaField,jdbcType=VARCHAR},
+            </if>
+            <if test="isPk != null">
+                is_pk = #{isPk,jdbcType=CHAR},
+            </if>
+            <if test="isNull != null">
+                is_null = #{isNull,jdbcType=CHAR},
+            </if>
+            <if test="isInsert != null">
+                is_insert = #{isInsert,jdbcType=CHAR},
+            </if>
+            <if test="isEdit != null">
+                is_edit = #{isEdit,jdbcType=CHAR},
+            </if>
+            <if test="isList != null">
+                is_list = #{isList,jdbcType=CHAR},
+            </if>
+            <if test="isQuery != null">
+                is_query = #{isQuery,jdbcType=CHAR},
+            </if>
+            <if test="queryType != null">
+                query_type = #{queryType,jdbcType=VARCHAR},
+            </if>
+            <if test="showType != null">
+                show_type = #{showType,jdbcType=VARCHAR},
+            </if>
+            <if test="dictType != null">
+                dict_type = #{dictType,jdbcType=VARCHAR},
+            </if>
+            <if test="settings != null">
+                settings = #{settings,jdbcType=VARCHAR},
+            </if>
+            <if test="sort != null">
+                sort = #{sort,jdbcType=DECIMAL},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remarks != null">
+                remarks = #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag,jdbcType=CHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <select id="findList" resultMap="BaseResultMap"
+            parameterType="genTableColumn">
+        select
+        <include refid="Base_Column_List"/>
+        from gen_table_column t1
+        where 1=1
+        <if test="name != null and name != ''">
+            and t1.name = #{name,jdbcType=VARCHAR}
+        </if>
+        <if test="genTableId != null and genTableId != ''">
+            and t1.gen_table_id = #{genTableId,jdbcType=VARCHAR}
+        </if>
+        order by t1.sort
+    </select>
+    <insert id="insertBatch" parameterType="java.util.List">
+        insert into gen_table_column (id, gen_table_id, name,
+        comments, jdbc_type, java_type,
+        java_field, is_pk, is_null,
+        is_insert, is_edit, is_list, is_query,
+        query_type, show_type, dict_type,
+        settings, sort, create_by,
+        create_date, update_by, update_date,
+        remarks, del_flag)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id,jdbcType=VARCHAR}, #{item.genTableId,jdbcType=VARCHAR}, #{item.name,jdbcType=VARCHAR},
+            #{item.comments,jdbcType=VARCHAR}, #{item.jdbcType,jdbcType=VARCHAR}, #{item.javaType,jdbcType=VARCHAR},
+            #{item.javaField,jdbcType=VARCHAR}, #{item.isPk,jdbcType=CHAR}, #{item.isNull,jdbcType=CHAR},
+            #{item.isInsert,jdbcType=CHAR}, #{item.isEdit,jdbcType=CHAR}, #{item.isList,jdbcType=CHAR},
+            #{item.isQuery,jdbcType=CHAR},
+            #{item.queryType,jdbcType=VARCHAR}, #{item.showType,jdbcType=VARCHAR}, #{item.dictType,jdbcType=VARCHAR},
+            #{item.settings,jdbcType=VARCHAR}, #{item.sort,jdbcType=DECIMAL}, #{item.createBy,jdbcType=VARCHAR},
+            #{item.createDate,jdbcType=TIMESTAMP}, #{item.updateBy,jdbcType=VARCHAR},
+            #{item.updateDate,jdbcType=TIMESTAMP},
+            #{item.remarks,jdbcType=VARCHAR}, #{item.delFlag,jdbcType=CHAR})
+        </foreach>
+    </insert>
+    <delete id="deleteByTableId" parameterType="string">
+        delete from gen_table_column
+        where gen_table_id = #{genTableId,jdbcType=VARCHAR}
+    </delete>
+    <!--<update id="updateBatch" parameterType="java.util.List">-->
+    <!--update gen_table_column-->
+    <!--<trim prefix="set" suffixOverrides=",">-->
+    <!--<trim prefix="name =case" suffix="end,">-->
+    <!--<foreach collection="list" item="item" index="index">-->
+    <!--<if test="item.name !=null and item.name != ''">-->
+    <!--when id=#{item.id} then #{item.name}-->
+    <!--</if>-->
+    <!--<if test="item.name == null or item.name == ''">-->
+    <!--when id=#{item.id} then gen_table_column.name-->
+    <!--</if>-->
+    <!--</foreach>-->
+    <!--</trim>-->
+    <!--<trim prefix="comments =case" suffix="end,">-->
+    <!--<foreach collection="list" item="item" index="index">-->
+    <!--<if test="item.comments !=null and item.comments != ''">-->
+    <!--when id=#{item.id} then #{item.comments}-->
+    <!--</if>-->
+    <!--<if test="item.comments == null or item.comments == ''">-->
+    <!--when id=#{item.id} then gen_table_column.comments-->
+    <!--</if>-->
+    <!--</foreach>-->
+    <!--</trim>-->
+    <!--<trim prefix="jdbc_type =case" suffix="end,">-->
+    <!--<foreach collection="list" item="item" index="index">-->
+    <!--<if test="item.javaType !=null and item.javaType != ''">-->
+    <!--when id=#{item.id} then #{item.javaType}-->
+    <!--</if>-->
+    <!--<if test="item.javaType == null or item.javaType == ''">-->
+    <!--when id=#{item.id} then gen_table_column.jdbc_type-->
+    <!--</if>-->
+    <!--</foreach>-->
+    <!--</trim>-->
+    <!--<trim prefix="java_type =case" suffix="end,">-->
+    <!--<foreach collection="list" item="item" index="index">-->
+    <!--<if test="item.javaType !=null and item.javaType != ''">-->
+    <!--when id=#{item.id} then #{item.javaType}-->
+    <!--</if>-->
+    <!--<if test="item.javaType == null or item.javaType == ''">-->
+    <!--when id=#{item.id} then gen_table_column.java_type-->
+    <!--</if>-->
+    <!--</foreach>-->
+    <!--</trim>-->
+    <!--<trim prefix="java_field =case" suffix="end,">-->
+    <!--<foreach collection="list" item="item" index="index">-->
+    <!--<if test="item.javaField !=null and item.javaField != ''">-->
+    <!--when id=#{item.id} then #{item.javaField}-->
+    <!--</if>-->
+    <!--<if test="item.javaField == null or item.javaField == ''">-->
+    <!--when id=#{item.id} then gen_table_column.java_field-->
+    <!--</if>-->
+    <!--</foreach>-->
+    <!--</trim>-->
+    <!--<trim prefix="is_pk =case" suffix="end,">-->
+    <!--<foreach collection="list" item="item" index="index">-->
+    <!--<if test="item.isPk !=null and item.isPk != ''">-->
+    <!--when id=#{item.id} then #{item.isPk}-->
+    <!--</if>-->
+    <!--<if test="item.isPk == null or item.isPk == ''">-->
+    <!--when id=#{item.id} then gen_table_column.is_pk-->
+    <!--</if>-->
+    <!--</foreach>-->
+    <!--</trim>-->
+    <!--</trim>-->
+    <!--where id in-->
+    <!--<foreach collection="list" index="index" item="item" separator="," open="(" close=")">-->
+    <!--#{item.id}-->
+    <!--</foreach>-->
+    <!--</update>-->
+</mapper>

@@ -71,6 +71,7 @@ $(document).ready(function () {
         },
         sortable: true,
         resizable: true,
+        pageable: false,
         height: document.documentElement.clientHeight - (70 + $("#conditions").height()),
         columns: [
             {

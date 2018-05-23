@@ -10,7 +10,7 @@ $(document).ready(function () {
             form.clear();
         },
         add: function () {
-            $window.data("kendoMEWindow").openUrl(ctx + "/table/bulidTable");
+            $window.data("kendoMEWindow").openUrl(ctx + "/table/buildTable");
         },
         del: function (id) {
             confirmx("确认删除?", function () {
