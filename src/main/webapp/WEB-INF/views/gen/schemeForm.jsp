@@ -22,56 +22,44 @@
         <div class="panel-heading">表单配置</div>
         <div class="panel-body">
             <div class="form-group">
-                <label class="col-md-7 control-label">方案名称:</label>
-                <div class="col-md-7">
+                <label class="col-md-2 control-label">方案名称:</label>
+                <div class="col-md-4">
                     <input name="name" class="input-sm form-control" data-bind="value:name"/>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-7 control-label">模板分类:</label>
-                <div class="col-md-7">
+                <label class="col-md-2 control-label">模板分类:</label>
+                <div class="col-md-4">
                     <input name="category" class="input-sm form-control" data-bind="value:category"/>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-7 control-label">生成包路径:</label>
-                <div class="col-md-7">
+                <label class="col-md-2 control-label">生成包路径:</label>
+                <div class="col-md-4">
                     <input name="packageName" class="input-sm form-control" data-bind="value:packageName"/>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-7 control-label">生成模块名:</label>
-                <div class="col-md-7">
+                <label class="col-md-2 control-label">生成模块名:</label>
+                <div class="col-md-4">
                     <input name="moduleName" class="input-sm form-control" data-bind="value:moduleName"/>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-7 control-label">生成子模块名:</label>
-                <div class="col-md-7">
+                <label class="col-md-2 control-label">生成子模块名:</label>
+                <div class="col-md-4">
                     <input name="subModuleName" class="input-sm form-control" data-bind="value:subModuleName"/>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-7 control-label">生成功能描述:</label>
-                <div class="col-md-7">
+                <label class="col-md-2 control-label">生成功能描述:</label>
+                <div class="col-md-4">
                     <input name="description" class="input-sm form-control" data-bind="value:comments"/>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-7 control-label">生成功能名:</label>
-                <div class="col-md-7">
+                <label class="col-md-2 control-label">生成功能名:</label>
+                <div class="col-md-4">
                     <input name="functionName" class="input-sm form-control" data-bind="value:functionName"/>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-7 control-label">生成功能作者:</label>
-                <div class="col-md-7">
+                <label class="col-md-2 control-label">生成功能作者:</label>
+                <div class="col-md-4">
                     <input name="functionAuthor" class="input-sm form-control" data-bind="value:functionAuthor"/>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-7 control-label">业务表名:</label>
-                <div class="col-md-7">
+                <label class="col-md-2 control-label">业务表名:</label>
+                <div class="col-md-4">
                     <input name="tableName" class="input-sm form-control" data-bind="value:tableName"/>
                     <input name="genTableId" type="hidden" class="input-sm form-control" data-bind="value:genTableId"/>
                 </div>
