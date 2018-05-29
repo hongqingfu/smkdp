@@ -4,14 +4,11 @@ $(document).ready(function () {
 
     form = $("#conditions").kendoMEForm({
         enableValidate: true,
-        flags:["page","entity","dao","service","controller"],
-        packageName: "com.hqf.modules",
-        genTableId: id,
         save: function () {
             console.log(form.getData());
             var data = form.getData();
             $.ajax({
-                url: ctx + "/scheme/create",
+                url: ctx + "/scheme/save",
                 type: "post",
                 dataType: "json",
                 data: JSON.stringify(data),
@@ -29,7 +26,7 @@ $(document).ready(function () {
     }).data("kendoMEForm");
 
     // 加载数据
-    $.ajax({
+    /*$.ajax({
         url: ctx + "/table/get?id=" + id,
         type: "post",
         dataType: "json",
@@ -41,7 +38,7 @@ $(document).ready(function () {
                 alertx("no data")
             }
         }
-    });
+    });*/
 
 
 

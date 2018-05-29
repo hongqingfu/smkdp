@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smkdp.modules.gen.dao.GenSchemeDao">
+    <resultMap id="BaseResultMap" type="com.smkdp.modules.gen.entity.GenScheme">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="category" property="category" jdbcType="VARCHAR"/>
+        <result column="package_name" property="packageName" jdbcType="VARCHAR"/>
+        <result column="module_name" property="moduleName" jdbcType="VARCHAR"/>
+        <result column="sub_module_name" property="subModuleName" jdbcType="VARCHAR"/>
+        <result column="function_name" property="functionName" jdbcType="VARCHAR"/>
+        <result column="function_name_simple" property="functionNameSimple" jdbcType="VARCHAR"/>
+        <result column="function_author" property="functionAuthor" jdbcType="VARCHAR"/>
+        <result column="gen_table_id" property="genTableId" jdbcType="VARCHAR"/>
+        <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+        <result column="remarks" property="remarks" jdbcType="VARCHAR"/>
+        <result column="del_flag" property="delFlag" jdbcType="CHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    t1.id, t1.name, t1.category, t1.package_name, t1.module_name, t1.sub_module_name, t1.function_name, t1.function_name_simple,
+    t1.function_author, t1.gen_table_id, t1.create_by, t1.create_date, t1.update_by, t1.update_date, t1.remarks,
+    t1.del_flag
+  </sql>
+    <select id="get" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from gen_scheme t1
+        where t1.id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="delete" parameterType="java.lang.String">
+    delete from gen_scheme
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="genScheme">
+    insert into gen_scheme (id, name, category, 
+      package_name, module_name, sub_module_name, 
+      function_name, function_name_simple, function_author, 
+      gen_table_id, create_by, create_date, 
+      update_by, update_date, remarks, 
+      del_flag)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, 
+      #{packageName,jdbcType=VARCHAR}, #{moduleName,jdbcType=VARCHAR}, #{subModuleName,jdbcType=VARCHAR}, 
+      #{functionName,jdbcType=VARCHAR}, #{functionNameSimple,jdbcType=VARCHAR}, #{functionAuthor,jdbcType=VARCHAR}, 
+      #{genTableId,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{remarks,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=CHAR})
+  </insert>
+    <update id="update" parameterType="genScheme">
+        update gen_scheme
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="category != null">
+                category = #{category,jdbcType=VARCHAR},
+            </if>
+            <if test="packageName != null">
+                package_name = #{packageName,jdbcType=VARCHAR},
+            </if>
+            <if test="moduleName != null">
+                module_name = #{moduleName,jdbcType=VARCHAR},
+            </if>
+            <if test="subModuleName != null">
+                sub_module_name = #{subModuleName,jdbcType=VARCHAR},
+            </if>
+            <if test="functionName != null">
+                function_name = #{functionName,jdbcType=VARCHAR},
+            </if>
+            <if test="functionNameSimple != null">
+                function_name_simple = #{functionNameSimple,jdbcType=VARCHAR},
+            </if>
+            <if test="functionAuthor != null">
+                function_author = #{functionAuthor,jdbcType=VARCHAR},
+            </if>
+            <if test="genTableId != null">
+                gen_table_id = #{genTableId,jdbcType=VARCHAR},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remarks != null">
+                remarks = #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag,jdbcType=CHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <select id="findList" resultMap="BaseResultMap" parameterType="genScheme">
+        select
+        <include refid="Base_Column_List"/>
+        from gen_scheme t1
+        where 1=1
+    </select>
+    <select id="getTableScheme" parameterType="genTable" resultType="genTable">
+        select
+        <include refid="Base_Column_List"/>,
+        t2.name as tableName
+        from gen_table t2
+        left join gen_scheme t1 on t1.gen_table_id = t2.id
+        where 1=1
+        <if test="genTableId != null and genTableId != ''">
+            and t1.gen_table_id = #{genTableId,jdbcType=VARCHAR}
+        </if>
+  </select>
+</mapper>
