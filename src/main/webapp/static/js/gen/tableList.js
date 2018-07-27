@@ -31,7 +31,9 @@ $(document).ready(function () {
         }
     }).data("kendoMEForm");
 
-    var $window = $("<div id='detail_window'></div>").appendTo($(document.body)).kendoMEWindow();
+    var $window = $("<div id='detail_window'></div>").appendTo($(document.body)).kendoMEWindow({
+        width: 100
+    });
 
     var grid = $("#grid").kendoMEGrid({
         dataSource: {
