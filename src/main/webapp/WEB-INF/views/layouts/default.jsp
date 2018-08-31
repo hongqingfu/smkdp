@@ -11,92 +11,68 @@
     <meta http-equiv="Expires" content="0"/>
     <script type="text/javascript">var ctx = '${ctx}', ctxStatic = '${ctxStatic}';</script>
 
-    <%--<link rel="stylesheet" type="text/css" href="${ctxStatic}/bootstrap/bootstrap-theme.css"/>--%>
-    <link rel="stylesheet" type="text/css" href="${ctxStatic}/bootstrap/bootstrap.min.css"/>
-    <%--<link rel="stylesheet" type="text/css" href="${ctxStatic}/bootstrap2/css/bootstrap.min.css"/>--%>
-    <link rel="stylesheet" type="text/css" href="${ctxStatic}/kendo/kendo.common.min.css"/>
-    <link rel="stylesheet" type="text/css" href="${ctxStatic}/kendo/kendo.bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctxStatic}/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctxStatic}/kendo/styles/kendo.common.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctxStatic}/kendo/styles/kendo.common-bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctxStatic}/kendo/styles/kendo.bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="${ctxStatic}/common/web_common.css"/>
     <link rel="stylesheet" type="text/css" href="${ctxStatic}/common/commons.css"/>
-    <link rel="stylesheet" type="text/css" href="${ctxStatic}/common/site.css"/>
-    <%--<link rel="stylesheet" type="text/css" href="${ctxStatic}/kendo/kendo.silver.min.css"/>--%>
-    <%--<link rel="stylesheet" type="text/css" href="${ctxStatic}/common/styles.css"/>--%>
+    <link rel="stylesheet" type="text/css" href="${ctxStatic}/css/site.css"/>
 
-    <script type="text/javascript" src="${ctxStatic}/jquery/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="${ctxStatic}/bootstrap/bootstrap.min.js"></script>
-    <script type="text/javascript" src="${ctxStatic}/kendo/kendo.all.min.js"></script>
-    <script type="text/javascript" src="${ctxStatic}/kendo/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="${ctxStatic}/kendo/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctxStatic}/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${ctxStatic}/kendo/js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="${ctxStatic}/kendo/js/cultures/kendo.culture.zh-CN.min.js"></script>
     <script type="text/javascript" src="${ctxStatic}/common/web_common.js"></script>
     <script type="text/javascript" src="${ctxStatic}/me/MEWidget.js"></script>
 
     <sitemesh:head/>
 </head>
 <body>
-<div id="header" class="navbar navbar-default" role="navigation" style="margin-bottom: 1px;">
-    <div class="container-fluid" style="background-color: #337ab7">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#" style="color:#fff;">SMK</a>
-        </div>
-
+<div class="header-panel">
+    <div class="navbar-header">
+        <img style="height: 45px;" src="img/logo.png" >
+        <span id="navbar-header-project" style="color:#fff; font-size:23px;vertical-align:middle;margin-right:6px;">XXX管理系统</span>
+    </div>
+    <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-                <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                    <%--<img class="nav-user-photo" src="assets/avatars/user.jpg"/>--%>
-                    <span class="user-info" style="color:#fff;">
-									<small>Welcome,</small>
-									Jason
-								</span>
-
-                    <i class="icon-caret-down"></i>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#"><span class="glyphicon glyphicon-cog"></span> 设置</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> 个人信息</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> 注销</a></li>
-                </ul>
+            <li class="navbar-item dropdown-parent" id="main-dropdown">
+                <div class="navbar-header-menu-container dropdown-toggle">
+                    <span class="float-clear-helper"></span>
+                    <a href=""><img class="navbar-header-menu-icon" title="主页" src=""></a>
+                </div>
+            </li>
+            <li class="navbar-item dropdown-parent" id="setting-dropdown">
+                <span style="float: right; padding-right: 20px; line-height: 50px; color: #ffffff">
+                    当前用户：系统管理员
+                    <button class="btn btn-small btn-primary" id="logout">注销</button>                </span>
             </li>
         </ul>
-        <%--<p class="navbar-text navbar-right">文本</p>--%>
     </div>
 </div>
-<div class="main-container" style="height: 100%;">
-    <div id="horizontal">
-        <div id="menu-pane">
-            <div class="pane-content">
-                <div id="menu-panelbar"></div>
-            </div>
+<div id="main-panel">
+    <div id="main-splider">
+        <div id="left-panel">
+            <div id="menu"></div>
         </div>
-        <div id="main-pane">
+        <div id="content-panel">
             <div class="container-fluid">
                 <sitemesh:body/>
-
             </div>
         </div>
+
     </div>
+
 </div>
-<%--<sitemesh:body/>--%>
-<div id="footer"></div>
 <script>
     $(document).ready(function () {
-        var horizontal = $("#horizontal").kendoSplitter({
+        $("#main-splider").kendoSplitter({
             panes: [
-                {collapsible: true, max: "20%", size: "15%"},
-                {collapsible: false}
+                { collapsible: true, max: "20%",size: "15%" },
+                { collapsible: false}
             ]
-        }).data("kendoSplitter");
+        });
 
-        var browserWindow = $(window);
-        var headerFooterHeight = $("#header").height() + $("#footer").height();
-
-        // 调整高度
-        function resizeSplitter() {
-            horizontal.wrapper.height(browserWindow.height() - headerFooterHeight);
-            horizontal.resize();
-        }
-
-        resizeSplitter();
-        browserWindow.resize(resizeSplitter);
 
         /****************************菜单**************************************/
         var homogeneous = new kendo.data.HierarchicalDataSource({
@@ -133,36 +109,8 @@
 //            },
 //            dataTextField: "name"
 //        });
-        $("#menu-panelbar").kendoMEMenu();
+        $("#menu").kendoMEMenu();
     });
 </script>
 </body>
-
 </html>
-<style>
-    html,
-    body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-    }
-
-    #horizontal {
-        height: 100%;
-    }
-
-    /*select, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .input-sm {*/
-        /*display: inline-block;*/
-        /*height: 20px;*/
-        /*padding: 4px 6px;*/
-        /*margin-bottom: 0px;*/
-        /*font-size: 14px;*/
-        /*line-height: 20px;*/
-        /*color: #555;*/
-        /*vertical-align: middle;*/
-        /*-webkit-border-radius: 4px;*/
-        /*-moz-border-radius: 4px;*/
-        /*border-radius: 4px;*/
-    /*}*/
-</style>

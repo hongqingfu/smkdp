@@ -21,16 +21,16 @@
         <div class="panel-heading">表单配置</div>
         <div class="panel-body">
             <div class="form-group">
-                <label class="col-md-4 control-label">名称</label>
-                <div class="col-md-4">
+                <label class="col-md-1 control-label">名称</label>
+                <div class="col-md-2">
                     <input id="name" name="name" class="input-sm form-control" data-bind="value:name" readonly/>
                 </div>
-                <label class="col-md-4 control-label">类名</label>
-                <div class="col-md-4">
+                <label class="col-md-1 control-label">类名</label>
+                <div class="col-md-2">
                     <input id="className" name="className" class="input-sm form-control" data-bind="value:className" readonly/>
                 </div>
-                <label class="col-md-4 control-label">描述</label>
-                <div class="col-md-4">
+                <label class="col-md-1 control-label">描述</label>
+                <div class="col-md-2">
                     <input id="comments" name="comments" class="input-sm form-control" data-bind="value:comments" readonly/>
                 </div>
             </div>

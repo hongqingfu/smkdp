@@ -11,21 +11,18 @@
     <meta http-equiv="Expires" content="0"/>
     <script type="text/javascript">var ctx = '${ctx}', ctxStatic = '${ctxStatic}';</script>
 
-    <%--<link rel="stylesheet" type="text/css" href="${ctxStatic}/bootstrap/bootstrap-theme.css"/>--%>
-    <link rel="stylesheet" type="text/css" href="${ctxStatic}/bootstrap/bootstrap.min.css"/>
-    <%--<link rel="stylesheet" type="text/css" href="${ctxStatic}/bootstrap2/css/bootstrap.min.css"/>--%>
-    <link rel="stylesheet" type="text/css" href="${ctxStatic}/kendo/kendo.common.min.css"/>
-    <link rel="stylesheet" type="text/css" href="${ctxStatic}/kendo/kendo.bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctxStatic}/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctxStatic}/kendo/styles/kendo.common.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctxStatic}/kendo/styles/kendo.common-bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctxStatic}/kendo/styles/kendo.bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="${ctxStatic}/common/web_common.css"/>
     <link rel="stylesheet" type="text/css" href="${ctxStatic}/common/commons.css"/>
-    <link rel="stylesheet" type="text/css" href="${ctxStatic}/common/site.css"/>
-    <%--<link rel="stylesheet" type="text/css" href="${ctxStatic}/kendo/kendo.silver.min.css"/>--%>
-    <%--<link rel="stylesheet" type="text/css" href="${ctxStatic}/common/styles.css"/>--%>
+    <link rel="stylesheet" type="text/css" href="${ctxStatic}/css/site.css"/>
 
-    <script type="text/javascript" src="${ctxStatic}/jquery/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="${ctxStatic}/bootstrap/bootstrap.min.js"></script>
-    <script type="text/javascript" src="${ctxStatic}/kendo/kendo.all.min.js"></script>
-    <script type="text/javascript" src="${ctxStatic}/kendo/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="${ctxStatic}/kendo/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctxStatic}/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${ctxStatic}/kendo/js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="${ctxStatic}/kendo/js/cultures/kendo.culture.zh-CN.min.js"></script>
     <script type="text/javascript" src="${ctxStatic}/common/web_common.js"></script>
     <script type="text/javascript" src="${ctxStatic}/me/MEWidget.js"></script>
 

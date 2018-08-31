@@ -21,20 +21,20 @@
         <div class="panel-heading">生成表单配置</div>
         <div class="panel-body">
             <div class="form-group">
-                <label class="col-md-2 control-label">数据源</label>
-                <div class="col-md-4">
+                <label class="col-md-1 control-label">数据源</label>
+                <div class="col-md-2">
                     <input id="dataSourceId" name="dataSourceId" class="input-sm form-control" data-bind="value:dataSourceId" style="width: 100%" required/>
                 </div>
-                <label class="col-md-2 control-label">表名</label>
-                <div class="col-md-4">
+                <label class="col-md-1 control-label">表名</label>
+                <div class="col-md-2">
                     <input id="name" name="name" class="input-sm form-control" data-bind="value:name" style="width: 100%" required/>
                 </div>
-                <label class="col-md-2 control-label">类名</label>
-                <div class="col-md-4">
+                <label class="col-md-1 control-label">类名</label>
+                <div class="col-md-2">
                     <input id="className" name="className" class="input-sm form-control" data-bind="value:className" style="width: 100%" required/>
                 </div>
-                <label class="col-md-2 control-label">描述</label>
-                <div class="col-md-4">
+                <label class="col-md-1 control-label">描述</label>
+                <div class="col-md-2">
                     <input id="comments" name="comments" class="input-sm form-control" data-bind="value:comments" style="width: 100%" required/>
                 </div>
             </div>

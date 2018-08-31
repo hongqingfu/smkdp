@@ -12,7 +12,7 @@ $(document).ready(function () {
                 dataType: "json",
                 type: "post",
                 success: function (result) {
-                    alertx(result.message,function () {
+                    alertx(result.message, function () {
                         window.parent.$("#detail_window").data("kendoMEWindow").close();
                     })
                 }
@@ -51,10 +51,10 @@ $(document).ready(function () {
                     id: "id",
                     fields: {
                         name: {type: "string", editable: false},
-                        comments: {type: "string"},
+                        comments: {type: "string", editable: false},
                         jdbcType: {type: "string", editable: false},
                         javaType: {type: "string"},
-                        javaField: {type: "string"},
+                        javaField: {type: "string", editable: false},
                         isPk: {type: "string"},
                         isNull: {type: "string"},
                         isInsert: {type: "string"},
@@ -118,12 +118,13 @@ $(document).ready(function () {
             {
                 field: "isPk",
                 title: "主键",
-                template: '<input type="checkbox" id="#: id#1" data-bind="checked:isPk" #= isPk==\'Y\' ? \'checked="checked"\' : "" # class="k-checkbox is-pk"  />' + '<label class="k-checkbox-label" for="#: id#1"></label>'
+                template: '<input type="checkbox" id="#: id#1" data-bind="checked:isPk" #= isPk==\'Y\' ? \'checked="checked"\' : "" #  class="k-checkbox is-pk"  /><label class="k-checkbox-label" for="#: id#1"></label>',
             },
             {
                 field: "isNull",
                 title: "可空",
-                template: '<input type="checkbox" id="#: id#2" data-bind="checked:isNull" #= isNull==\'Y\' ? \'checked="checked"\' : "" # class="k-checkbox is-null"  />' + '<label class="k-checkbox-label" for="#: id#2"></label>'
+                template: '<input type="checkbox" id="#: id#2" data-bind="checked:isNull" #= isNull==\'Y\' ? \'checked="checked"\' : "" # class="k-checkbox is-null"  />' + '<label class="k-checkbox-label" for="#: id#2"></label>',
+
             },
             {
                 field: "isInsert",
@@ -211,6 +212,7 @@ $(document).ready(function () {
         var item = grid.dataItem(row);
         item.set("isQuery", $(e.target).is(":checked") ? 'Y' : 'N');
     });
+
 });
 
 //格式化时间

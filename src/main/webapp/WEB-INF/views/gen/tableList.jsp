@@ -16,23 +16,24 @@
             <div class="row">
                 <div class="form-horizontal">
                     <div class="form-group">
-                        <label class="col-md-2 control-label">表名</label>
-                        <div class="col-md-4">
+                        <label class="col-md-1 control-label">表名</label>
+                        <div class="col-md-2">
                             <input name="name" class="input-sm form-control" data-bind="value:name"/>
                         </div>
-                        <label class="col-md-2 control-label">功能描述</label>
-                        <div class="col-md-4">
+                        <label class="col-md-1 control-label">功能描述</label>
+                        <div class="col-md-2">
                             <input name="comments" class="input-sm form-control" data-bind="value:comments"/>
                         </div>
-                        <div class="text-right">
-                            <button class="btn btn-primary" data-bind="click:query">
+                        <div class="col-md-2">
+                            <button class="btn btn-small btn-primary" data-bind="click:query">
                                 <span class="glyphicon glyphicon-search"></span>查询
                             </button>
-                            <button class="btn btn-primary" data-bind="click:clear">
+                            <button class="btn btn-small btn-primary" data-bind="click:clear">
                                 <span class="glyphicon glyphicon-repeat"></span>重置
                             </button>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

@@ -7,11 +7,11 @@
 
     <!-- 用来定义装饰器要过滤的页面 <meta name="decorator" content="default"/>-->
     <decorator name="default" page="layouts/default.jsp">
-        <pattern>/*</pattern>
+        <pattern>/WEB-INF/*</pattern>
     </decorator>
 
     <decorator name="blank" page="layouts/blank.jsp">
-        <pattern>/*</pattern>
+        <pattern>/WEB-INF/*</pattern>
     </decorator>
 
 </decorators>
