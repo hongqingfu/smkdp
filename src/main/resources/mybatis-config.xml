@@ -43,6 +43,8 @@
     	<!-- 指定对象的方法启用懒加载 -->
     	<setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString"/>
 
+		<!-- 打印查询语句 -->
+		<setting name="logImpl" value="STDOUT_LOGGING" />
 	</settings>
 
 	<typeAliases>

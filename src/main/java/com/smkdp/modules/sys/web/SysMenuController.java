@@ -22,7 +22,7 @@ public class SysMenuController {
 
     @RequestMapping("menulist")
     public String menuList() {
-        return "/sys/menuList";
+        return "sys/menuList";
     }
 
     @RequestMapping(value = "menuList", method = RequestMethod.POST)

@@ -1,7 +1,5 @@
 package com.smkdp.common.base;
 
-import com.smkdp.common.persistence.Page;
-
 import java.util.List;
 
 public interface BaseDao<T> {

@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>登陆</title>
-    <%--<link rel="stylesheet" type="text/css" href="static/me/body.css"/>--%>
-    <%--<link rel="stylesheet" type="text/css" href="static/me/style.css"/>--%>
+    <script type="text/javascript" src="static/jquery/jquery-3.3.1.js"></script>
 </head>
 <body>
 <div class="login-page">
@@ -18,7 +18,7 @@
                         <div class="ivu-form-item-content">
                             <div class="ivu-input-wrapper ivu-input-wrapper-large ivu-input-type">
                                 <i class="ivu-icon ivu-icon-load-c ivu-load-loop ivu-input-icon ivu-input-icon-validate"></i>
-                                <input autocomplete="off" spellcheck="false" type="text" placeholder="" class="ivu-input ivu-input-large">
+                                <input id="loginName" autocomplete="off" spellcheck="false" type="text" placeholder="" class="ivu-input ivu-input-large">
                             </div>
                         </div>
                     </div>
@@ -27,12 +27,12 @@
                         <div class="ivu-form-item-content">
                             <div class="ivu-input-wrapper ivu-input-wrapper-large ivu-input-type">
                                 <i class="ivu-icon ivu-icon-load-c ivu-load-loop ivu-input-icon ivu-input-icon-validate"></i>
-                                <input autocomplete="off" spellcheck="false" type="text" placeholder="" class="ivu-input ivu-input-large">
+                                <input id="password" autocomplete="off" spellcheck="false" type="password" placeholder="" class="ivu-input ivu-input-large">
                             </div>
                         </div>
                     </div>
                     <div class="sub text-center">
-                        <button type="button" class="login-btn ivu-btn ivu-btn-primary ivu-btn-long ivu-btn-large">
+                        <button type="button" class="login-btn ivu-btn ivu-btn-primary ivu-btn-long ivu-btn-large" onclick="login();">
                             <span>登&nbsp;&nbsp;录</span>
                         </button>
                     </div>
@@ -41,6 +41,22 @@
         </div>
     </div>
 </div>
+<script>
+
+    function login() {
+        var loginName = $("#loginName").val();
+        var password = $("#password").val();
+        $.ajax({
+            type: "POST",
+            url: "sys/login",
+            data: {loginName:loginName, password:password},
+            dataType: "json",
+            success: function(data){
+               console.log(data);
+            }
+        });
+    }
+</script>
 <style>
 
     .login-page {

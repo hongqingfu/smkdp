@@ -13,22 +13,22 @@ $(document).ready(function () {
         dataSource: {
             transport: {
                 read: {
-                    url: ctx + "/sys/menupage",
+                    url: ctx + "/menu/menupage",
                     type: "post"
                 },
                 update: {
-                    url: ctx + "/sys/saveMenu",
+                    url: ctx + "/menu/saveMenu",
                     type: "post",
 //                        contentType: "application/json",
                     dataType: "json"
                 },
                 destroy: {
-                    url: ctx + "/sys/deleteMenu",
+                    url: ctx + "/menu/deleteMenu",
                     type: "post",
                     dataType: "json"
                 },
                 create: {
-                    url: ctx + "/sys/saveMenu",
+                    url: ctx + "/menu/saveMenu",
                     type: "post",
 //                        contentType: "application/json",
                     dataType: "json"
@@ -96,23 +96,23 @@ function detailInit(e) {
         dataSource: {
             transport: {
                 read: {
-                    url: ctx + "/sys/menupage",
+                    url: ctx + "/menu/menupage",
                     type: "post",
                     data: {id: e.data.id}
                 },
                 update: {
-                    url: ctx + "/sys/saveMenu",
+                    url: ctx + "/menu/saveMenu",
                     type: "post",
 //                        contentType: "application/json",
                     dataType: "json"
                 },
                 destroy: {
-                    url: ctx + "/sys/deleteMenu",
+                    url: ctx + "/menu/deleteMenu",
                     type: "post",
                     dataType: "json"
                 },
                 create: {
-                    url: ctx + "/sys/saveMenu",
+                    url: ctx + "/menu/saveMenu",
                     type: "post",
 //                        contentType: "application/json",
                     dataType: "json"

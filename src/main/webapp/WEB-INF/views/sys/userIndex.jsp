@@ -2,9 +2,9 @@
 <%@include file="/WEB-INF/views/include/taglib.jsp" %>
 <html>
 <head>
-    <title>菜单设置</title>
+    <title>用户管理</title>
     <meta name="decorator" content="default"/>
-    <script type="text/javascript" src="${ctxStatic}/js/sys/menuList.js"></script>
+    <script type="text/javascript" src="${ctxStatic}/js/sys/userList.js"></script>
 </head>
 <body>
 <div id="conditions" class="widget-box">
@@ -16,27 +16,19 @@
             <div class="row">
                 <div class="form-horizontal">
                     <div class="form-group">
-                        <label class="col-md-2 control-label">名称</label>
-                        <div class="col-md-4">
-                            <input name="name" class="input-sm form-control" data-bind="value:name"/>
+                        <label class="col-md-1 control-label">登陆名</label>
+                        <div class="col-md-2">
+                            <input name="loginName" class="input-sm form-control" data-bind="value:loginName"/>
                         </div>
-                        <label class="col-md-2 control-label">是否显示</label>
-                        <div class="col-md-4">
-                            <input name="2" class="input-sm form-control" data-bind="value:isShow"/>
+                        <label class="col-md-1 control-label">机构</label>
+                        <div class="col-md-2">
+                            <input name="comments" class="input-sm form-control" data-bind="value:comments"/>
                         </div>
-                        <%--<label class="col-md-2 control-label">条件3</label>
-                        <div class="col-md-4">
-                            <input name="3" class="input-sm form-control"/>
-                        </div>
-                        <label class="col-md-2 control-label">条件4</label>
-                        <div class="col-md-4">
-                            <input name="4" class="input-sm form-control"/>
-                        </div>--%>
-                        <div class="text-right">
-                            <button class="btn btn-primary" data-bind="click:query">
+                        <div class="col-md-2">
+                            <button class="btn btn-small btn-primary" data-bind="click:query">
                                 <span class="glyphicon glyphicon-search"></span>查询
                             </button>
-                            <button class="btn btn-primary" data-bind="click:clear">
+                            <button class="btn btn-small btn-primary" data-bind="click:clear">
                                 <span class="glyphicon glyphicon-repeat"></span>重置
                             </button>
                         </div>

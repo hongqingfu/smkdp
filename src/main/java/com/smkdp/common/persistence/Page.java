@@ -1,147 +1,270 @@
 package com.smkdp.common.persistence;
 
-import org.apache.ibatis.session.RowBounds;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.smkdp.common.config.Global;
+import com.smkdp.common.utils.CookieUtils;
+import org.apache.commons.lang3.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
-public class Page<T> extends RowBounds {
-
-    private int page = 1;                // 当前页数
-    private int pageSize = 1;            // 每页显示行数
-    private int totalCount;                // 总行数
-    private int totalPages;                // 总页数
-
-    private List<T> result = new ArrayList<T>();// 查询结果
-
-    private int offset;                    // 偏移量 : 第一条数据在表中的位置
-    private int limit;                    // 限定数 : 每页的数量
-
-    private int length = 8;                // 页显示数
-    private String funcName = "page";    // 点击页码调用的js函数名称，默认为page
-    private int prev;                    // 上一页
-    private int next;                    // 下一页
+public class Page<T> implements Serializable {
+    private static final long serialVersionUID = -5021619094785456065L;
+    private int page = 1;
+    private int pageSize = Integer.valueOf(Global.getConfig("page.pageSize")).intValue();
+    private long count;
+    private int first;
+    private int last;
+    private int prev;
+    private int next;
+    private boolean firstPage;
+    private boolean lastPage;
+    private int length = 8;
+    private int slider = 1;
+    private List<T> list = new ArrayList();
+    private String orderBy = "";
+    private String funcName = "page";
+    private String funcParam = "";
+    private String message = "";
+    private int take;
+    private int skip;
 
     public Page() {
-        super();
-        this.offset = (this.page - 1) * this.pageSize;
-        this.limit = this.pageSize;
+        this.pageSize = -1;
     }
 
-    public Page(List<T> result) {
-        this.result = result;
+    public Page(HttpServletRequest request, HttpServletResponse response) {
+        this(request, response, -2);
+    }
+
+    public Page(HttpServletRequest request, HttpServletResponse response, int defaultPageSize) {
+        String no = request.getParameter("page");
+        if (StringUtils.isNumeric(no)) {
+            CookieUtils.setCookie(response, "page", no);
+            setPage(Integer.parseInt(no));
+        } else if (request.getParameter("repage") != null) {
+            no = CookieUtils.getCookie(request, "page");
+            if (StringUtils.isNumeric(no)) {
+                setPage(Integer.parseInt(no));
+            }
+        }
+        String size = request.getParameter("pageSize");
+        if (StringUtils.isNumeric(size)) {
+            CookieUtils.setCookie(response, "pageSize", size);
+            setPageSize(Integer.parseInt(size));
+        } else if (request.getParameter("repage") != null) {
+            size = CookieUtils.getCookie(request, "pageSize");
+            if (StringUtils.isNumeric(size)) {
+                setPageSize(Integer.parseInt(size));
+            }
+        } else if (defaultPageSize != -2) {
+            this.pageSize = defaultPageSize;
+        }
+        String funcName = request.getParameter("funcName");
+        if (StringUtils.isNotBlank(funcName)) {
+            CookieUtils.setCookie(response, "funcName", funcName);
+            setFuncName(funcName);
+        } else if (request.getParameter("repage") != null) {
+            funcName = CookieUtils.getCookie(request, "funcName");
+            if (StringUtils.isNotBlank(funcName)) {
+                setFuncName(funcName);
+            }
+        }
+        String orderBy = request.getParameter("orderBy");
+        if (StringUtils.isNotBlank(orderBy)) {
+            setOrderBy(orderBy);
+        }
+    }
+
+    public Page(int page, int pageSize) {
+        this(page, pageSize, 0L);
+    }
+
+    public Page(int page, int pageSize, long count) {
+        this(page, pageSize, count, new ArrayList());
+    }
+
+    public Page(int page, int pageSize, long count, List<T> list) {
+        setCount(count);
+        setPage(page);
+        this.pageSize = pageSize;
+        this.list = list;
+    }
+
+    public void initialize() {
+        this.first = 1;
+
+        this.last = ((int) (this.count / (this.pageSize < 1 ? 20 : this.pageSize) + this.first - 1L));
+        if ((this.count % this.pageSize != 0L) || (this.last == 0)) {
+            this.last += 1;
+        }
+        if (this.last < this.first) {
+            this.last = this.first;
+        }
+        if (this.page <= 1) {
+            this.page = this.first;
+            this.firstPage = true;
+        }
+        if (this.page >= this.last) {
+            this.page = this.last;
+            this.lastPage = true;
+        }
+        if (this.page < this.last - 1) {
+            this.next = (this.page + 1);
+        } else {
+            this.next = this.last;
+        }
+        if (this.page > 1) {
+            this.prev = (this.page - 1);
+        } else {
+            this.prev = this.first;
+        }
+        if (this.page < this.first) {
+            this.page = this.first;
+        }
+        if (this.page > this.last) {
+            this.page = this.last;
+        }
+    }
+
+    public long getCount() {
+        return this.count;
+    }
+
+    public void setCount(long count) {
+        this.count = count;
+        if (this.pageSize >= count) {
+            this.page = 1;
+        }
     }
 
     public int getPage() {
-        return page;
+        return this.page;
     }
 
     public void setPage(int page) {
-
-        this.page = page <= 0 ? 1 : page;
-        this.offset = (this.page - 1) * this.pageSize;
-        this.limit = this.pageSize;
+        this.page = page;
     }
 
     public int getPageSize() {
-        return pageSize;
+        return this.pageSize;
     }
 
     public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
+        this.pageSize = (pageSize <= 0 ? 10 : pageSize);
     }
 
-    public int getTotalCount() {
-        return totalCount;
+    @JsonIgnore
+    public int getFirst() {
+        return this.first;
     }
 
-    public void setTotalCount(int totalCount) {
+    @JsonIgnore
+    public int getLast() {
+        return this.last;
+    }
 
-        this.totalCount = totalCount;
+    @JsonIgnore
+    public int getTotalPage() {
+        return getLast();
+    }
 
-        if (totalCount < 0) {
+    @JsonIgnore
+    public boolean isFirstPage() {
+        return this.firstPage;
+    }
 
-            this.totalPages = -1;
+    @JsonIgnore
+    public boolean isLastPage() {
+        return this.lastPage;
+    }
+
+    @JsonIgnore
+    public int getPrev() {
+        if (isFirstPage()) {
+            return this.page;
         }
-
-        int pages = totalCount / this.pageSize;
-
-        this.totalPages = totalCount % this.pageSize > 0 ? pages + 1 : pages;
-
-        this.prev = this.page == 1 ? 1 : (this.page - 1);
-        this.next = (this.page + 1) > this.totalPages ? this.totalPages : (this.page + 1);
+        return this.page - 1;
     }
 
-    public int getTotalPages() {
-        return totalPages;
+    @JsonIgnore
+    public int getNext() {
+        if (isLastPage()) {
+            return this.page;
+        }
+        return this.page + 1;
     }
 
-    public void setTotalPages(int totalPages) {
-        this.totalPages = totalPages;
+    public List<T> getList() {
+        return this.list;
     }
 
-    public List<T> getResult() {
-        return result;
+    public Page<T> setList(List<T> list) {
+        this.list = list;
+        initialize();
+        return this;
     }
 
-    public void setResult(List<T> result) {
-        this.result = result;
+    @JsonIgnore
+    public String getOrderBy() {
+        String reg = "(?:')|(?:--)|(/\\*(?:.|[\\n\\r])*?\\*/)|(\\b(select|update|and|or|delete|insert|trancate|char|into|substr|ascii|declare|exec|count|master|into|drop|execute)\\b)";
+
+        Pattern sqlPattern = Pattern.compile(reg, 2);
+        if (sqlPattern.matcher(this.orderBy).find()) {
+            return "";
+        }
+        return this.orderBy;
     }
 
-    public int getOffset() {
-        return offset;
+    public void setOrderBy(String orderBy) {
+        this.orderBy = orderBy;
     }
 
-    public void setOffset(int offset) {
-        this.offset = offset;
-    }
-
-    public int getLimit() {
-        return limit;
-    }
-
-    public void setLimit(int limit) {
-        this.limit = limit;
-    }
-
-    public int getLength() {
-        return length;
-    }
-
-    public void setLength(int length) {
-        this.length = length;
-    }
-
+    @JsonIgnore
     public String getFuncName() {
-        return funcName;
+        return this.funcName;
     }
 
     public void setFuncName(String funcName) {
         this.funcName = funcName;
     }
 
-    public int getPrev() {
-        return prev;
+    @JsonIgnore
+    public String getFuncParam() {
+        return this.funcParam;
     }
 
-    public void setPrev(int prev) {
-        this.prev = prev;
+    public void setFuncParam(String funcParam) {
+        this.funcParam = funcParam;
     }
 
-    public int getNext() {
-        return next;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public void setNext(int next) {
-        this.next = next;
+    @JsonIgnore
+    public boolean isDisabled() {
+        return this.pageSize == -1;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("Page [page=").append(page).append(", pageSize=").append(pageSize).append(", results=")
-                .append(getResult()).append(", totalCount=").append(totalCount).append(", totalPages=").append(totalPages)
-                .append("]");
-        return builder.toString();
+    @JsonIgnore
+    public boolean isNotCount() {
+        return this.count == -1L;
+    }
+
+    public int getFirstResult() {
+        int firstResult = (getPage() - 1) * getPageSize();
+        if (firstResult >= getCount()) {
+            firstResult = 0;
+        }
+        return firstResult;
+    }
+
+    public int getMaxResults() {
+        return getPageSize();
     }
 }

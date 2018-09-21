@@ -1382,3 +1382,17 @@ body .k-dropdown .k-input {
 	opacity: 0;
 	-ms-filter: 'alpha(opacity=0)';
 }
+
+/*.form-horizontal .form-group > div {*/
+	/*padding: 15px;*/
+	/*border-left: 1px solid #efefef;*/
+/*}*/
+
+/*.form-horizontal .form-group {*/
+	/*margin: 0;*/
+	/*border-bottom: 1px solid #efefef;*/
+/*}*/
+
+/*.form-horizontal .form-group .control-label {*/
+	/*padding-top: 20px;*/
+/*}*/
