@@ -2,16 +2,49 @@
 <%@include file="/WEB-INF/views/include/taglib.jsp" %>
 <html>
 <head>
-    <title>维护</title>
+    <title>用户维护</title>
     <meta name="decorator" content="blank"/>
     <script type="text/javascript" src="${ctxStatic}/js/sys/userForm.js"></script>
 </head>
 <body>
 <div>
-    <div class="panel panel-primary">
-        <div class="panel-heading">用户维护</div>
-        <div class="panel-body conditions" id="conditions">
+    <div class="k-block">
+        <div class="k-header k-shadow">用户维护</div>
+        <div id="conditions">
 
+            <div class="form-horizontal form-widgets col-sm-6">
+                <div class="form-group">
+                    <label class="control-label col-sm-4">用户头像</label>
+                    <div class="col-sm-8 col-md-6">
+                        <img src="logo.png" style="height: 100px;width: 100px;">
+                        <input name="files" id="files" type="file" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="email">邮箱</label>
+                    <div class="col-sm-8 col-md-6">
+                        <input class="k-textbox" name="email" id="email" type="email" data-bind="value:email"
+                               required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="phone" id="skills_label">手机号码</label>
+                    <div class="col-sm-8 col-md-6">
+                        <input class="k-textbox" name="phone" id="phone" type="text" data-bind="value:phone"
+                               required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="mobile">电话号码</label>
+                    <div class="col-sm-8 col-md-6">
+                        <input class="k-textbox" name="mobile" id="mobile" type="text" data-bind="value:mobile"
+                               required>
+                    </div>
+                </div>
+            </div>
             <div class="form-horizontal form-widgets col-sm-6">
                 <div class="form-group">
                     <label class="control-label col-sm-4" for="loginName">用戶名</label>
@@ -39,36 +72,9 @@
                     </div>
                 </div>
             </div>
-
-            <div class="form-horizontal form-widgets col-sm-6">
-                <div class="form-group">
-                    <label class="control-label col-sm-4" for="email">邮箱</label>
-                    <div class="col-sm-8 col-md-6">
-                        <input class="k-textbox" name="email" id="email" type="email" data-bind="value:email"
-                               required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-sm-4" for="phone" id="skills_label">手机号码</label>
-                    <div class="col-sm-8 col-md-6">
-                        <input class="k-textbox" name="phone" id="phone" type="text" data-bind="value:phone"
-                               required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-sm-4" for="mobile">电话号码</label>
-                    <div class="col-sm-8 col-md-6">
-                        <input class="k-textbox" name="mobile" id="mobile" type="text" data-bind="value:mobile"
-                               required>
-                    </div>
-                </div>
-            </div>
-
             <div class="clearfix"></div>
 
-            <div class="buttons-wrap">
+            <div class="buttons-wrap" style="border-top: 1px solid #e7e7e7;padding-top: .5em;text-align: right;">
                 <button class="k-button k-state-default" data-bind="click:save">保存</button>
                 <button class="k-button k-state-default" data-bind="click:save">关闭</button>
             </div>

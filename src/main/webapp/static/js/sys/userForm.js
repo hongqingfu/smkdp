@@ -68,6 +68,18 @@ $(document).ready(function () {
 
     var $window = $("<div id='detail_window'></div>").appendTo($(document.body)).kendoMEWindow();
 
+    $("#files").kendoUpload({
+        validation: {
+            allowedExtensions: [".jpg", ".jpeg", ".png", ".bmp", ".gif"]
+        },
+        success: onSuccess,
+        showFileList: true
+    });
+
+    function onSuccess(e) {
+        alert(123);
+    }
+
 });
 
 //格式化时间

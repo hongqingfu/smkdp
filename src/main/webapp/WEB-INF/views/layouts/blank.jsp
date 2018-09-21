@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="${ctxStatic}/kendo/styles/kendo.common.min.css"/>
     <link rel="stylesheet" type="text/css" href="${ctxStatic}/kendo/styles/kendo.common-bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="${ctxStatic}/kendo/styles/kendo.bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="${ctxStatic}/common/web_common.css"/>
+    <%--<link rel="stylesheet" type="text/css" href="${ctxStatic}/common/web_common.css"/>--%>
     <%--<link rel="stylesheet" type="text/css" href="${ctxStatic}/common/commons.css"/>--%>
     <%--<link rel="stylesheet" type="text/css" href="${ctxStatic}/css/site.css"/>--%>
 
@@ -33,13 +33,13 @@
 </body>
 
 </html>
-<%--
+
 <style>
     html,
     body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
+        background-color: #f5f5f5;
     }
-</style>--%>
+    .form-group .k-widget, .form-group .k-textbox {
+        width: 100%;
+    }
+</style>

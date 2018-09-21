@@ -61,9 +61,6 @@ body{
 .k-combobox .k-dropdown-wrap:before, .k-numeric-wrap:before, .k-picker-wrap:before{
 	height:1.6em;
 }
-.k-icon, .k-tool-icon{
-	margin-bottom: 3px;
-}
 .k-autocomplete-clearable .k-input, .k-combobox-clearable .k-input, .k-multiselect-clearable .k-input{
 	height:1.6em;
 	line-height: 1.6em;
@@ -79,6 +76,13 @@ body{
 	padding:5px;
 }
 
+.k-block>.k-header{
+	padding: .5em 6px;
+}
+
+.form-group .k-widget, .form-group .k-textbox {
+	width: 100%;
+}
 
 .navbar-inverse {
 	background-color: #1d508d;

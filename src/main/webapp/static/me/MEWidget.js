@@ -289,7 +289,7 @@
                 "Maximize",
                 "Close"
             ],
-            width: document.documentElement.clientWidth - 100,
+            width: document.documentElement.clientWidth - 300,
             height: document.documentElement.clientHeight - 100,
             resizable: true,
             open: function () {
