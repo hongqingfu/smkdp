@@ -95,11 +95,11 @@ $(document).ready(function () {
                 title: "工号"
             },
             {
-                field: "companyId",
+                field: "company.name",
                 title: "公司"
             },
             {
-                field: "officeId",
+                field: "office.name",
                 title: "部门"
             },
             {

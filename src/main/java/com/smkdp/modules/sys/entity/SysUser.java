@@ -42,6 +42,10 @@ public class SysUser extends BaseEntity<SysUser> {
 
     private Date oldLoginDate;
 
+    private SysOffice company;
+
+    private SysOffice office;
+
 
     public String getCompanyId() {
         return companyId;
@@ -197,4 +201,19 @@ public class SysUser extends BaseEntity<SysUser> {
         return (id != null) && ("1".equals(id));
     }
 
+    public SysOffice getCompany() {
+        return company;
+    }
+
+    public void setCompany(SysOffice company) {
+        this.company = company;
+    }
+
+    public SysOffice getOffice() {
+        return office;
+    }
+
+    public void setOffice(SysOffice office) {
+        this.office = office;
+    }
 }

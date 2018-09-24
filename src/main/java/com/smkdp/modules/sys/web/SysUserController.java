@@ -4,14 +4,26 @@ import com.github.pagehelper.PageInfo;
 import com.smkdp.common.base.BaseMessage;
 import com.smkdp.modules.sys.entity.SysMenu;
 import com.smkdp.modules.sys.entity.SysUser;
+import com.smkdp.modules.sys.service.SysOfficeService;
 import com.smkdp.modules.sys.service.SysUserService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("user")
@@ -19,6 +31,9 @@ public class SysUserController {
 
     @Autowired
     private SysUserService sysUserService;
+
+    @Autowired
+    private SysOfficeService sysOfficeService;
 
     @RequestMapping({"get"})
     @ResponseBody
@@ -103,6 +118,30 @@ public class SysUserController {
             return new BaseMessage(200, "登陆成功");
         }
         return new BaseMessage(500, "登陆失败");
+    }
+
+    @RequestMapping(value = "upload", method = RequestMethod.POST)
+    public @ResponseBody
+    String upload(HttpServletRequest request,
+                      HttpServletResponse response, ModelMap model, HttpSession session) throws IOException {
+        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+        MultipartFile mFile = multipartRequest.getFile("file");
+        String path="D:\\EasyCare\\userfiles\\";
+        String fileName = mFile.getOriginalFilename();
+//        fileName = fileName.substring(fileName.lastIndexOf("")+1);      //获取扩展
+        String extName = fileName.substring(fileName.lastIndexOf("."));
+        String uuid = UUID.randomUUID().toString().replace("-", "");
+        String newName = uuid+extName;
+        InputStream inputStream = mFile.getInputStream();
+        byte[] b = new byte[1048576];
+        int length = inputStream.read(b);
+        String url =path + newName;
+        System.out.println(url);
+        FileOutputStream outputStream = new FileOutputStream(url);
+        outputStream.write(b, 0, length);
+        inputStream.close();
+        outputStream.close();
+        return newName;
     }
 
 }

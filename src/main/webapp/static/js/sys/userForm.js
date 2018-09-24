@@ -47,6 +47,9 @@ $(document).ready(function () {
                     }
                 });
             }
+        },
+        close: function () {
+            window.parent.$("#detail_window").data("kendoMEWindow").close();
         }
     }).data("kendoMEForm");
 
@@ -68,17 +71,41 @@ $(document).ready(function () {
 
     var $window = $("<div id='detail_window'></div>").appendTo($(document.body)).kendoMEWindow();
 
-    $("#files").kendoUpload({
-        validation: {
-            allowedExtensions: [".jpg", ".jpeg", ".png", ".bmp", ".gif"]
+    var company = $("#companyId").kendoDropDownList({
+        autoBind: false,
+        optionLabel: "请选择",
+        filter: "contains",
+        dataTextField: "name",
+        dataValueField: "id",
+        valuePrimitive: true,
+        dataSource: {
+            transport: {
+                read: ctx + "/office/officeList",
+                // contentType: "application/json",
+                dataType: "json"
+            }
         },
-        success: onSuccess,
-        showFileList: true
-    });
+        change: function (e) {
+            office.dataSource.read({parentId: company.value()});
+            office.select(0);
+        }
+    }).data("kendoDropDownList");
 
-    function onSuccess(e) {
-        alert(123);
-    }
+    var office = $("#officeId").kendoDropDownList({
+        autoBind: false,
+        optionLabel: "请选择",
+        filter: "contains",
+        dataTextField: "name",
+        dataValueField: "id",
+        valuePrimitive: true,
+        dataSource: {
+            transport: {
+                read: ctx + "/office/officeList",
+                // contentType: "application/json",
+                dataType: "json"
+            }
+        }
+    }).data("kendoDropDownList");
 
 });
 
