@@ -12,7 +12,7 @@ $(document).ready(function () {
             success: function (data) {
                 if (data) {
                     $("#pg").remove();
-                    form.setData(data)
+                    form.setData(data);
                 } else {
                     alertx("系统错误，请稍后重试")
                 }
@@ -23,6 +23,7 @@ $(document).ready(function () {
     form = $("#conditions").kendoMEForm({
         enableValidate: true,
         save: function () {
+            console.log(typeof form.getData())
             if (form.validate()) {
                 console.log(form.getData());
                 var data = form.getData();
@@ -110,8 +111,8 @@ $(document).ready(function () {
 });
 
 //格式化时间
-if (Date) {
-    Date.prototype.toISOString = function () {
-        return kendo.toString(this, "yyyy-MM-dd HH:mm:ss");
-    };
-}
+// if (Date) {
+//     Date.prototype.toISOString = function () {
+//         return kendo.toString(this, "yyyy-MM-dd HH:mm:ss");
+//     };
+// }

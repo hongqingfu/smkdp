@@ -94,14 +94,14 @@ $(document).ready(function () {
                 field: "no",
                 title: "工号"
             },
-            {
-                field: "company.name",
-                title: "公司"
-            },
-            {
-                field: "office.name",
-                title: "部门"
-            },
+            // {
+            //     field: "company.name",
+            //     title: "公司"
+            // },
+            // {
+            //     field: "office.name",
+            //     title: "部门"
+            // },
             {
                 field: "mobile",
                 title: "手机号码"

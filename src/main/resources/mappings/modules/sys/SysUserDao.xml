@@ -127,10 +127,10 @@
     select
     <include refid="Base_Column_List"/>,
     b.name AS "company.name",
-    b.parent_id AS "company.parent.id",
+    b.parent_id AS "company.parentId",
     b.parent_ids AS "company.parentIds",
     c.name AS "office.name",
-    c.parent_id AS "office.parent.id",
+    c.parent_id AS "office.parentId",
     c.parent_ids AS "office.parentIds"
     from sys_user a
     left join sys_office b on b.id = a.company_id
